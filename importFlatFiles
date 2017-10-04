@@ -23,4 +23,14 @@ dataImport = numpy.genfromtxt(file, delimiter=','
 file = 'ej.txt'
 dataImport = numpy.recfromtxt(file)
 
+# PANDAS
+import pandas as pd
+file = 'ej.txt'
+data = pd.read_csv(file
+        , sep='\t'                    # sep es el delimitador de las columnas
+        , comment='#'                 # comments son caracteres especiales que son comentarios, aqui borra todo lo que esta despues de #
+        , na_values=('Nothing')       # valores que en realidad significan NULL --> NULL en pyhon es NaN o NA
+        )
+
+
 
