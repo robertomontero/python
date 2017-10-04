@@ -1,0 +1,26 @@
+import numpy as np
+
+with open ('fileName.txt') as file:
+  data = file.read()      # read whole file
+  print(data.readline())  # read next line
+  
+# WORKING WITH DIFFERENT PARAMETERS WHILE LOADING DATA WITH NUMBERS (USE NUMPY)
+with open('fileNumbers.txt') as file2:
+  data = np.loadtxt(file2
+        , delimiter=','   # column delimiters ',' '\t' '\n' ';'
+        , skiprows=1      # skip rows (eg header)
+        , usecols=[0,2]   # read only specific columns
+        )
+        
+# ARCHIVOS QUE TIENEN COLUMNAS CON DISTINTOS TIPOS DE DATOS -- usar numpy.genfromtxt()
+file = 'ejemplo.csv'
+dataImport = numpy.genfromtxt(file, delimiter=','   
+            ,names=True                             # names = si tiene header o no
+            ,dtype=None                             # dtype = None --> tipo del DF, si es None python tratara de asignar los tipos
+            )
+
+# numpy.recfromscv, numpy.recfromtxt,  --> DEFAULT delimiter=','  dtype=None  names=True 
+file = 'ej.txt'
+dataImport = numpy.recfromtxt(file)
+
+
