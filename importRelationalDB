@@ -12,6 +12,9 @@ engine = create_engine('sqlite:///exampleSchema.exampleDB')   # crea conexion
 table_names = engine.table_names()                            # guardar nombres de tablas en variable
 print(table_names)                                            # ver tablas
 
+# 3 create connection OPTIONAL (if with statement is used, this line is not necessary)
+con = engine.connect()
+
 with engine.connect() as con                                  # 3 connect to the engine
   # 4 query the database
   rs = con.execute('SELECT * FROM TABLE')
