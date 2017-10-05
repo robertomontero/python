@@ -1,0 +1,4 @@
+# ver si datafranes son iguales ("Determines if two NDFrame objects contain the same elements")
+df1 = x
+df2 = y
+print(df.equals(df1))
