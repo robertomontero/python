@@ -1,1 +1,28 @@
+# Query relational databases
+
+# SQLite
+# 1 importar paquetes y funciones
+from sqlalchemy import create_engine
+import pandas as pd
+
+# 2 create database engine
+engine = create_engine('sqlite:///exampleSchema.exampleDB')   # crea conexion
+
+# some metadata
+table_names = engine.table_names()                            # guardar nombres de tablas en variable
+print(table_names)                                            # ver tablas
+
+with engine.connect() as con                                  # 3 connect to the engine
+  # 4 query the database
+  rs = con.execute('SELECT * FROM TABLE')
+
+  # 5 save query results to dataframe
+  df = pd.DataFrame(rs.fetchall())                            # todo el resultado del qry de un solo
+  df = pd.DataFrame(rs.fetchmany(size=100))                   # solo 100 filas
+  df.columns = rs.keys()
+
+# !! si no se usa el with, cerrar la conexion con con.close()
+
+# querying usando pandas
+df = pd.read_sql_query('SELECT * FROM TABLE', engine)
 
