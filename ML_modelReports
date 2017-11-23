@@ -1,0 +1,30 @@
+# Check if models are accurate
+# Confusion Matrix: a matrix of true positive TP (correct prediction on target type = x), 
+  # false positive FP (incorrect prediction on target type = x), 
+  # true negative TN (correct prediction on target type = y), 
+  # false negative FN (incorrect prediction on target type = y)
+# A classification report can be built using metrics of the confusion matrix
+  # precision (ppv): total number of correctly labeled-x targets / total number of labeled-x targets
+  # recall (sensitivity): TP / (TP+FN)
+  # F1 score: 2*precision*recall / (precision+recall)
+  # support: total number of considered inputs per classification
+
+# Import necessary modules
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+
+# Create training and test set
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.4, random_state = 42)
+
+# Instantiate a k-NN classifier: knn
+knn = KNeighborsClassifier(n_neighbors = 6)
+
+# Fit the classifier to the training data
+knn.fit(X_train,y_train)
+
+# Predict the labels of the test data: y_pred
+y_pred = knn.predict(X_test)
+
+# Generate the confusion matrix and classification report
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
