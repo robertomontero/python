@@ -10,7 +10,22 @@
   # support: total number of considered inputs per classification
 # roc curve: is constructed to see the accuracy of the model (Its a relationship between false positive (x) and true positive (y)). 
   # The more to the left top side of the graph the line is, the more accurate / or is the area beneath the curve is close to 1, 
-  # it is a good accuracy, close to 0.5 is a very bad accuracy.
+  # it is a good accuracy, close to 0.5 is a very bad accuracy. Area under the curve can be calculated using LR method 
+  # sklearn.metrics.roc_auc_score
+
+# Compute predicted probabilities: y_pred_prob
+y_pred_prob = logreg.predict_proba(X_test)[:,1]
+
+# Generate ROC curve values: fpr, tpr, thresholds
+fpr, tpr, threshold = roc_curve(y_test, y_pred_prob)
+
+# Plot ROC curve
+plt.plot([0, 1], [0, 1], 'k--')
+plt.plot(fpr, tpr)
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.show().roc_auc_score
 
 # CONFUSION MATRIX / CLASIFFICATION REPORT
 # Import necessary modules
