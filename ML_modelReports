@@ -8,7 +8,11 @@
   # recall (sensitivity): TP / (TP+FN)
   # F1 score: 2*precision*recall / (precision+recall)
   # support: total number of considered inputs per classification
+# roc curve: is constructed to see the accuracy of the model (Its a relationship between false positive (x) and true positive (y)). 
+  # The more to the left top side of the graph the line is, the more accurate / or is the area beneath the curve is close to 1, 
+  # it is a good accuracy, close to 0.5 is a very bad accuracy.
 
+# CONFUSION MATRIX / CLASIFFICATION REPORT
 # Import necessary modules
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
@@ -28,3 +32,21 @@ y_pred = knn.predict(X_test)
 # Generate the confusion matrix and classification report
 print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
+
+# ROC CURVE
+# Import necessary modules
+from sklearn.metrics import roc_curve
+
+# Compute predicted probabilities: y_pred_prob
+y_pred_prob = logreg.predict_proba(X_test)[:,1]
+
+# Generate ROC curve values: fpr, tpr, thresholds
+fpr, tpr, threshold = roc_curve(y_test, y_pred_prob)
+
+# Plot ROC curve
+plt.plot([0, 1], [0, 1], 'k--')
+plt.plot(fpr, tpr)
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.show()
